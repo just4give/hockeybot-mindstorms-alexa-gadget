@@ -1,0 +1,150 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "hockey bot",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name":"StartIntent",
+          "samples": [
+            "begin"
+          ]
+        },
+        {
+          "name": "MoveIntent",
+          "slots": [
+            {
+              "name": "Direction",
+              "type": "DirectionType"
+            },
+            {
+              "name": "Duration",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "{Direction}",
+            "move {Direction}",
+            "{Direction} for {Duration} seconds",
+            "move {Direction} for {Duration} seconds"
+          ]
+        },
+        {
+          "name": "HitIntent",
+          "slots": [
+            {
+              "name": "Command",
+              "type": "CommandType"
+            },
+            {
+              "name": "Direction",
+              "type": "DirectionType"
+            }
+          ],
+          "samples": [
+            "{Command}",
+            "{Command} {Direction}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "DirectionType",
+          "values": [
+            {
+              "name": {
+                "value": "brake"
+              }
+            },
+            {
+              "name": {
+                "value": "go backward"
+              }
+            },
+            {
+              "name": {
+                "value": "go forward"
+              }
+            },
+            {
+              "name": {
+                "value": "go right"
+              }
+            },
+            {
+              "name": {
+                "value": "go left"
+              }
+            },
+            {
+              "name": {
+                "value": "right"
+              }
+            },
+            {
+              "name": {
+                "value": "left"
+              }
+            },
+            {
+              "name": {
+                "value": "backwards"
+              }
+            },
+            {
+              "name": {
+                "value": "backward"
+              }
+            },
+            {
+              "name": {
+                "value": "forwards"
+              }
+            },
+            {
+              "name": {
+                "value": "forward"
+              }
+            }
+          ]
+        },
+        {
+          "name": "CommandType",
+          "values": [
+            {
+              "name": {
+                "value": "kick"
+              }
+            },
+            {
+              "name": {
+                "value": "hit"
+              }
+            },
+            {
+              "name": {
+                "value": "shot"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
