@@ -102,11 +102,16 @@ class MindstormsGadget(AlexaGadget):
         print(str(message.payload.decode("utf-8")))
         
         if message.topic =='/hockeybot/game/over':
-            print("game over message received")
-            jsondata = json.loads(str(message.payload.decode("utf-8")))
-            print(str(jsondata.score))
-            self._send_event(EventName.GAME_OVER, {'score':jsondata['score']})
-            print("event sent to alexa")
+            try:
+                print("game over message received")
+                jsondata = json.loads(str(message.payload.decode("utf-8")))
+                
+                self._send_event(EventName.GAME_OVER, {'score':jsondata['score']})
+                print("event posted to alexa")
+            except Exception as e: 
+                print(e)
+                
+            
 
     def on_connected(self, device_addr):
         """
@@ -209,10 +214,10 @@ class MindstormsGadget(AlexaGadget):
         :param speed: the turn speed
         """
         if direction in Direction.LEFT.value:
-            self.drive.on_for_seconds(SpeedPercent(0), SpeedPercent(speed), 2,brake=True,block=False)
+            self.drive.on_for_seconds(SpeedPercent(0), SpeedPercent(speed), 2)
 
         if direction in Direction.RIGHT.value:
-            self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(0), 2,brake=True,block=False )
+            self.drive.on_for_seconds(SpeedPercent(speed), SpeedPercent(0), 2)
 
     def check_for_obstacles_thread(self):
         while True:
@@ -221,7 +226,6 @@ class MindstormsGadget(AlexaGadget):
             #ground boundary 
             if read < 10 :
                 self.drive.off()
-                time.sleep(2)
                 self._turn('left',self.speed)
                 #self.drive.on_for_seconds(SpeedPercent(self.speed), SpeedPercent(self.speed), 5)
                 
